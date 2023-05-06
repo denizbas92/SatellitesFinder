@@ -1,5 +1,6 @@
 package com.example.satellitesfinder.list.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -14,7 +15,7 @@ import javax.inject.Inject
 
 class SatelliteAdapter @Inject constructor(
     private val applicationContext: Context,
-    private val satelliteList: ArrayList<SatelliteList>
+    private var satelliteList: ArrayList<SatelliteList>
 ) :
     RecyclerView.Adapter<SatelliteAdapter.SatelliteViewHolder>() {
 
@@ -32,6 +33,14 @@ class SatelliteAdapter @Inject constructor(
 
     override fun onBindViewHolder(holder: SatelliteViewHolder, position: Int) {
         holder.setBind(satelliteList[position])
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setFilteredList(listOfSatellite: java.util.ArrayList<SatelliteList>?) {
+        if (listOfSatellite != null) {
+            this.satelliteList = listOfSatellite
+        }
+        notifyDataSetChanged()
     }
 
     class SatelliteViewHolder(
