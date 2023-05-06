@@ -4,6 +4,7 @@ import android.content.Context
 import com.example.satellitesfinder.di.ModulesConstants
 import com.example.satellitesfinder.model.Positions
 import com.example.satellitesfinder.model.SatelliteList
+import com.example.satellitesfinder.model.SatellitesDetail
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -46,8 +47,8 @@ class JsonConverter @Inject constructor(
         return gson.fromJson(jsonString, type)
     }
 
-    private fun jsonArrayToPositionList(jsonString: String): ArrayList<Positions> {
-        val type: Type = object : TypeToken<ArrayList<Positions?>?>() {}.type
+    private fun jsonArrayToPositionList(jsonString: String): ArrayList<SatellitesDetail> {
+        val type: Type = object : TypeToken<ArrayList<SatellitesDetail?>?>() {}.type
         return gson.fromJson(jsonString, type)
     }
 }

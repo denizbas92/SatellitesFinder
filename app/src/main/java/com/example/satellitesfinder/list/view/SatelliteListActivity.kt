@@ -29,7 +29,10 @@ class SatelliteListActivity : AppCompatActivity() {
     @Inject
     lateinit var jsonConverter: JsonConverter
 
-    private lateinit var satelliteAdapter: SatelliteAdapter
+    @Inject
+    lateinit var satelliteAdapter: SatelliteAdapter
+
+
     private lateinit var binding: ActivityListSatelliteBinding
     private var listOfSatellite: ArrayList<SatelliteList>? = null
 
@@ -46,7 +49,7 @@ class SatelliteListActivity : AppCompatActivity() {
         if (listOfSatellite.isNullOrEmpty())
             return
 
-        satelliteAdapter = SatelliteAdapter(this, listOfSatellite!!)
+        satelliteAdapter.setFilteredList(listOfSatellite)
         binding.recSatellite.layoutManager = LinearLayoutManager(this)
         binding.recSatellite.addItemDecoration(setDivider())
         binding.recSatellite.adapter = satelliteAdapter
