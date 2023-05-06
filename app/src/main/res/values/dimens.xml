@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="rec_satellite_margin_horizontal">10dp</dimen>
+    <dimen name="divider_height">1dp</dimen>
+    <dimen name="state_circle">10dp</dimen>
+    <dimen name="state_pix">20dp</dimen>
+    <dimen name="margin_satellite">25dp</dimen>
+    <dimen name="satellite_name">14sp</dimen>
+    <dimen name="satellite_state">14sp</dimen>
+</resources>

@@ -1,1 +1,4 @@
-<resources></resources>
+<resources>
+    <string name="active">Active</string>
+    <string name="passive">Passive</string>
+</resources>
