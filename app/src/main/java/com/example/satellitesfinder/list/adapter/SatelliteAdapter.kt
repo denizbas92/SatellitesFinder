@@ -14,6 +14,8 @@ import com.example.satellitesfinder.common.JsonConverter
 import com.example.satellitesfinder.common.JsonFileName
 import com.example.satellitesfinder.databinding.SatelliteItemLayoutBinding
 import com.example.satellitesfinder.detail.view.SatelliteDetailActivity
+import com.example.satellitesfinder.detail.view.SatelliteDetailActivity.Companion.SATELLITE_DETAIL
+import com.example.satellitesfinder.detail.view.SatelliteDetailActivity.Companion.SATELLITE_NAME
 import com.example.satellitesfinder.model.SatelliteList
 import com.example.satellitesfinder.model.SatellitesDetail
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -69,7 +71,7 @@ class SatelliteAdapter @Inject constructor(
             binding.baseLayout.setOnClickListener {
                 if (cacheMechanism.checkToCache(satellite.id)) {
                     val satellitesDetail = cacheMechanism.getSatellite().first()
-                    goToDetailActivity(satellitesDetail)
+                    goToDetailActivity(satellitesDetail,satellite.name)
                 } else {
                     val detailOfSatellite: ArrayList<SatellitesDetail> =
                         jsonConverter.getModelClass(
@@ -77,7 +79,7 @@ class SatelliteAdapter @Inject constructor(
                         ) as ArrayList<SatellitesDetail>
                     val detail = detailOfSatellite.filter { t -> t.id == satellite.id }
                     cacheMechanism.addToCache(detail.first())
-                    goToDetailActivity(detail.first())
+                    goToDetailActivity(detail.first(), satellite.name)
                 }
             }
 
@@ -99,9 +101,10 @@ class SatelliteAdapter @Inject constructor(
             }
         }
 
-        private fun goToDetailActivity(detail: SatellitesDetail) {
+        private fun goToDetailActivity(detail: SatellitesDetail, name: String?) {
             val intent = Intent(applicationContext, SatelliteDetailActivity::class.java)
-            intent.putExtra(SatelliteDetailActivity.SATELLITE_DETAIL, detail)
+            intent.putExtra(SATELLITE_DETAIL, detail)
+            intent.putExtra(SATELLITE_NAME,name)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK
             applicationContext.startActivity(intent)
         }
