@@ -10,6 +10,6 @@ class SingleSatellite() {
 }
 
 class PositionsOfSatellite() {
-    var posX: Float? = null
-    var posY: Float? = null
+    var posX: Double? = null
+    var posY: Double? = null
 }
